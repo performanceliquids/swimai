@@ -95,14 +95,10 @@ def processar_arquivos_completos(arquivos):
 # --- MENU LATERAL ---
 st.sidebar.title("🌊 Performance Liquids")
 
-# Entrada da Chave API
-chave_api_usuario = st.sidebar.text_input("🔑 Chave API Gemini:", type="password", help="Insira sua chave para ativar IA Multimodal.")
-
 # --- ACESSO VIP (CLOSED BETA) ---
 senha_vip = st.sidebar.text_input("🔐 Senha de Acesso (Beta):", type="password", help="Peça a senha ao treinador para liberar a Inteligência Artificial.")
 
 modelo_ia = None
-# A senha que você escolher para os seus amigos:
 if senha_vip == "SWIM2026": 
     try:
         # Puxa a sua chave secretamente do cofre do Streamlit
@@ -118,11 +114,12 @@ if senha_vip == "SWIM2026":
         modelo_ia = genai.GenerativeModel(modelo_escolhido)
         st.sidebar.success("✨ Acesso IA Liberado!")
     except Exception as e:
-        st.sidebar.error("Erro de conexão com o servidor. Tente mais tarde.")
+        st.sidebar.error("Erro de conexão com o cofre secreto. Verifique os Secrets.")
 elif senha_vip:
     st.sidebar.error("Senha incorreta.")
 
 st.sidebar.markdown("---")
+
 modo_avancado = st.sidebar.toggle("🔬 Modo Performance (Científico)", value=st.session_state.perfil_atleta.get('nivel') in ["Avançado", "Competitivo"])
 
 opcoes_menu = ["👤 Perfil", "🏆 Tática de Guaratuba", "📊 Visão Geral", "🤖 Coach Virtual (IA)", "📚 Dicionário"]
